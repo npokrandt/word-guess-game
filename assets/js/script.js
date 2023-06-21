@@ -8,19 +8,15 @@ var wordBlanksEl = document.querySelector(".word-blanks")
 var winsEl = document.querySelector(".win")
 var lossesEl = document.querySelector(".lose")
 
-console.log(startButton, resetButton, timerEl, wordBlanksEl, winsEl, lossesEl)
-
-  // reset button
-  // count down timer 
-  // word-blanks
-  // wins
-  // losses
-
   // list of words
-  // userGuesses = [] list of letters guessed by user
-  // answer = "function"
+  var words = ["jellyfish", "bacon", "porcupine", "phonetics", "antidisestablishmentarianism", "boolean", "callback", "redacted", "eschatology", "arminianism", "hydrochloric", "ajflsjfskf"]
+  var userGuesses = []
+  var answer = "function"
+
+  console.log(words.length)
 
   function startRound() {
+    console.log("start")
     // start timer
     // pick a random word
     // set word-blanks to have _'s
@@ -49,5 +45,6 @@ console.log(startButton, resetButton, timerEl, wordBlanksEl, winsEl, lossesEl)
 
   // Event Listeners
     // start - startRound()
+    startButton.addEventListener("click", startRound)
     // reset
     // keydown - onKeydown
