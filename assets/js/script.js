@@ -15,11 +15,25 @@ var lossesEl = document.querySelector(".lose")
 
   console.log(words.length)
 
+  function getRandomWord(){
+    var randomIdx = Math.floor(Math.random() * words.length)
+    answer = words[randomIdx]
+  }
+
+  function renderWord (){
+    var blanks = ""
+    for (var i = 0; i < answer.length; i++){
+      blanks += "_"
+    }  
+    wordBlanksEl.textContent =  blanks.split('').join(" ")
+  }
   function startRound() {
     console.log("start")
     // start timer
-    // pick a random word
-    // set word-blanks to have _'s
+    
+    getRandomWord()
+    renderWord()
+    
   }
 
   function onKeydown(event) {
