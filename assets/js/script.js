@@ -23,10 +23,16 @@ var lossesEl = document.querySelector(".lose")
   function renderWord (){
     var blanks = ""
     for (var i = 0; i < answer.length; i++){
-      blanks += "_"
+      var letter = answer[i]
+      if(userGuesses.includes(letter)){
+        blanks += letter
+      } else {
+        blanks += "_"
+      }
     }  
     wordBlanksEl.textContent =  blanks.split('').join(" ")
   }
+
   function startRound() {
     console.log("start")
     // start timer
@@ -37,9 +43,12 @@ var lossesEl = document.querySelector(".lose")
   }
 
   function onKeydown(event) {
-    // check if letter pressed is in the answer string
-      // if yes
-        // reveal letter in word-blanks
+
+    if (answer.includes(event.key) && !userGuesses.includes(event.key)){
+      userGuesses.push(event.key)
+      // reveal letter in word-blanks
+    }
+    renderWord()
   }
 
   function tick() {
@@ -62,3 +71,4 @@ var lossesEl = document.querySelector(".lose")
     startButton.addEventListener("click", startRound)
     // reset
     // keydown - onKeydown
+    document.body.addEventListener("keydown", onKeydown)
