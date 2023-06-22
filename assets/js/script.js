@@ -3,10 +3,14 @@
 // select dom elements
 var startButton = document.querySelector(".start-button")
 var resetButton = document.querySelector(".reset-button")
-var timerEl = document.querySelector(".timer")
+var timerEl = document.querySelector(".timer-count")
 var wordBlanksEl = document.querySelector(".word-blanks")
 var winsEl = document.querySelector(".win")
 var lossesEl = document.querySelector(".lose")
+var wins = 0
+var losses = 0
+var time = 10
+var intervalId
 
   // list of words
   var words = ["jellyfish", "bacon", "porcupine", "phonetics", "antidisestablishmentarianism", "boolean", "callback", "redacted", "eschatology", "arminianism", "hydrochloric", "ajflsjfskf"]
@@ -29,16 +33,16 @@ var lossesEl = document.querySelector(".lose")
       } else {
         blanks += "_"
       }
-    }  
+    }   
     wordBlanksEl.textContent =  blanks.split('').join(" ")
   }
 
   function startRound() {
-    console.log("start")
-    // start timer
     
+    //userGuesses = []
     getRandomWord()
     renderWord()
+    intervalId = setInterval(tick, 1000)
     
   }
 
@@ -52,16 +56,27 @@ var lossesEl = document.querySelector(".lose")
   }
 
   function tick() {
-    // check if userGuesses has all letters that are in answer string
-      // if has guess all letters
+    // check if userGuesses has all letters that are in answer string   
+    if (!wordBlanksEl.innerText.includes("_"))  {
+      clearInterval(intervalId)
+      wins++
+      wordBlanksEl.innerText = "You won!"
+    } else {
+      if (time <= 0){
+        clearInterval(intervalId)
+        losses++
+        wordBlanksEl.innerText = "You lost!"
+        timerEl.innerText = "Out of time!"
+      } else {
+        time--
+        timerEl.innerText = time
+      }
+    }  // if has guess all letters
         // end round
-        // increment wins
-        // display "you won!"
       // else
-        // is our timer count at 0?
+        // are we out of time?
           // if yes
-            // diplay "lost round"
-            // increment losses
+
           // else
             // decrement timer count
   }
